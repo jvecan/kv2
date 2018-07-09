@@ -1,6 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <?php
-// put your code here
+include('EmailFunktiot.php');
+    $returnMessage = "";
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    if($email) {
+        $emailFunktiot = new EmailFunktiot();
+        $returnMessage = $emailFunktiot->saveEmail($email);
+    }
+
 ?>
 <html>
     <head>
@@ -10,11 +17,12 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <form action="tallennaEmail.php">
+        <form method="post" action="?">
             <fieldset>
                 <legend>Sähköpostiosoitteiden keräys</legend>
-                <label for="email">Sähköposti: </label><input type="email" id="email" autofocus>                                           
-                <input type="submit" autofocus value="Tallenna sähköposti">
+                <label for="email" class='fieldset-row-label'>Sähköposti: </label><input type="email" id="email" name="email" class='fieldset-row-input-email' autofocus required>                                      
+                <input type="submit" class='fieldset-submit' autofocus value="Tallenna sähköposti">
+                <div><?php print $returnMessage?></div>
 
             </fieldset>
         </form>
