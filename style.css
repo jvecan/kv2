@@ -1,0 +1,12 @@
+.fieldset-row-label {
+    width: 25%;
+}
+
+.fieldset-row-input-email {
+    width: 50%;
+
+}
+
+.fieldset-submit {
+    display: block;
+}
